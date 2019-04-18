@@ -30,10 +30,10 @@ These instructions will get you a copy of the project up and running on your loc
         Blockchain DB is empty. Creating new Blockchain with 1 genesis block...
         chain length = 0, return null instead of block
         block saved
-        
+
 ## Testing 
 
- Testing can make use of either '*curl*' which is a command line tool. Or you can go for more sophisticated GUI based tool, such as; *Postman*.
+ Testing can make use of either '*curl*' which is a command line tool. Or you can go for more sophisticated GUI based tool, such as '*Postman*'.
 
 ### GET /block/{blockHeight}
 
