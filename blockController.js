@@ -32,14 +32,14 @@ class BlockController {
      */
     postNewBlock(req, res) {
       let bodydata = req.body.data;
-      console.log('Body Data is:   ' + bodydata);
+      console.log('New Block Data :   ' + bodydata);
       if (bodydata === undefined || bodydata === null || bodydata === '') {
-        let err_obj = new Error(`Missing block data: Missing 'data' key in POST Request`);
+        let err_obj = new Error(`Missing Block Data: Missing 'data' key in POST Request`);
         res.status(500).json({error: err_obj.message});
       }
       else {
-        let newblock_prom = this.blockchainService.addBlock(new Block(bodydata));
-        newblock_prom.then(block =>  {
+        let newblock_issue = this.blockchainService.addBlock(new Block(bodydata));
+        newblock_issue.then(block =>  {
           res.send(block);
         }).catch(err => {
           return res.status(500).send(err);   // bad request with error code
