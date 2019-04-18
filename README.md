@@ -34,7 +34,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### GET /block/{blockHeight}
 
-This will allows to read block information through its height.
+Responds to a request using a URL path with a block height parameter or properly handles an error if the height parameter is out of bounds.
+
 An example would be:
 
 ##### REQUEST
@@ -59,7 +60,7 @@ curl -X GET \
 
 ### POST /block/
 
-POST request will be used to add a new block to the blockchain.
+Allows posting a new block with the data payload option to add data to the block body. 
 An example would be:
 
 ##### REQUEST
