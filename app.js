@@ -1,11 +1,12 @@
+// Importing Express.js module
 const express = require('express');
 const bodyParser = require('body-parser');
 // Importing Blockchain class (aka simpleChain.js in Project2)
-const BlockchainService = require('./blockChain.js');
+const BlockchainService = require('./blockchain.js');
 // Importing Blockchain service
 const BlockController = require('./blockController.js');
 // Importing BlockchainData class to be used as wrapper for writing on level DB
-const BlockchainData = require('./blockChain.js');
+const BlockchainData = require('./blockchainData.js');
 
 // initialize express app
 const app = express();
@@ -13,7 +14,7 @@ const port = 8000;
 
 
 // Insantiating classes - Creating NVC patterns for chaining
-let blockchainData = new BlockchainData('./chaindata');
+let blockchainData = new BlockchainData("./chaindata");
 let blockchainService = new BlockchainService(blockchainData);
 let blockController = new BlockController(blockchainService);
 

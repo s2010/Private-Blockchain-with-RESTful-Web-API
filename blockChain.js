@@ -1,73 +1,7 @@
 const SHA256 = require('crypto-js/sha256');
-const Block = require('./Block');
+const Block = require('./block');
+const BlockchainData = require('./blockchainData.js');
 
-// level DB for perm storage
-const level = require('level');
-
-class BlockchainData {
-    constructor(dbDir){
-      this.db = level(dbDir);
-    }
-    getDb() {
-        return this.db;
-    }
-    saveBlock(block) {
-        let _this = this;
-        let key = block.height;
-        return new Promise(function(resolve, reject) {
-            _this.db.put(key, JSON.stringify(block), function(err){
-                if(err) {
-                    reject(new Error(`Block ${key} submission failed. ${err.message}`));
-                }
-                resolve(block);
-            })
-        });
-    }
-    getBlock(key) {
-        let _this = this;
-        return new Promise(function(resolve, reject) {
-            _this.db.get(key, function(err, value) {
-                if(err) {
-                    reject(new Error(`Can not find block in : ${key}. ${err.message}`));
-                } else {
-                    resolve(JSON.parse(value));
-                }
-            });
-        });
-    }
-    isEmpty() {
-        let _this = this;
-        return new Promise(function (resolve, reject) {
-            let length = _this.getChainLength();
-            length.then(result => {
-                if(result === 0) {
-                    resolve(true);
-                } else {
-                    resolve(false);
-                }
-            }).catch(err => {
-                reject(new Error(`Can not determine, if DB is empty. ${err.message}`));
-            });
-        });
-    }
-    getChainLength(getBlockHeight=false) {
-        let _this = this;
-        return new Promise(function(resolve, reject){
-            let length = 0;
-            _this.db.createReadStream({ keys: true, values: false })
-                .on('data', function (data) {
-                    length++;
-                })
-                .on('error', function(err) {
-                    reject(new Error(`error in DB Read Stream. ${err.message}`));
-                })
-                .on('close', function(){
-                    resolve(getBlockHeight ? length - 1 : length); 
-                });
-        });
-    }
-
-} 
 
 class Blockchain{
     constructor(db){
@@ -210,5 +144,4 @@ class Blockchain{
     }
 
 }
-module.exports = Blockchain
-module.exports = BlockchainData
+module.exports = Blockchain;

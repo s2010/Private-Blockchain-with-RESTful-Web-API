@@ -1,11 +1,11 @@
-class Block {
-    constructor(data) {
+// Class to represent a simple block with some fields
+class Block{
+    constructor(data){
+        this.hash = "";
         this.height = 0;
-        this.time = new Date().getTime().toString().slice(0, -3);
-        this.hash = '';
-        this.previousHash = '';
-        this.data = data;
+        this.body = data;
+        this.time = 0;
+        this.previousBlockHash = "";
     }
 }
-
 module.exports = Block;
