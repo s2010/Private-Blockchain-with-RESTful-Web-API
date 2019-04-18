@@ -7,8 +7,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Download or clone this repo to a local folder on your machine
     
-  `git clone https://github.com/s2010/Private-Blockchain-with-RESTful-Web-API.git`
-  
+     `git clone https://github.com/s2010/Private-Blockchain-with-RESTful-Web-API.git`
+
 2. Open terminal (MAC/linux) or command prompt (windows variants) on your desktop
 3. Run `npm install` to install dependencies from package.json
 4. Run `node app.js`
